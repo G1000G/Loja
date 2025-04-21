@@ -1,0 +1,109 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+
+export default function NineCheats() {
+  const [plan, setPlan] = useState(null);
+
+  return (
+    <div className="min-h-screen bg-black text-white font-mono px-6 py-10">
+      {/* Hero */}
+      <section className="text-center space-y-4">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold text-green-400 drop-shadow-lg"
+        >
+          A Riot Não Vai Te Pegar. Mas Teus Inimigos Vão Chorar.
+        </motion.h1>
+        <p className="text-gray-300 max-w-xl mx-auto">
+          Cheat indetectável de Valorant. Aim assist, wallhack, triggerbot e configs de pro player. 100% stealth. Compra rápida. Suporte 24/7.
+        </p>
+        <Button className="bg-green-500 text-black hover:bg-green-400">
+          ACESSAR PAINEL VIP
+        </Button>
+      </section>
+
+      {/* Planos */}
+      <section className="mt-20">
+        <h2 className="text-3xl font-bold text-center mb-10 text-green-400">
+          ESCOLHE TEU ARSENAL
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Starter Zé",
+              desc: "WallHack + Config Padrão + Suporte básico",
+              price: "R$ 49/mês",
+            },
+            {
+              title: "Aimbot Pro",
+              desc: "WallHack + AimAssist + TriggerBot + Config Pro + Atualização semanal",
+              price: "R$ 99/mês",
+            },
+            {
+              title: "NineGod VIP",
+              desc: "Tudo incluso + Atualizações diárias + Suporte Telegram + Anti-AntiCheat",
+              price: "R$ 199/mês",
+            },
+          ].map((p, i) => (
+            <Card
+              key={i}
+              className={`bg-zinc-900 border border-zinc-700 rounded-2xl shadow-xl p-4 hover:border-green-400 transition-all duration-300 ${plan === i && "border-green-500"}`}
+              onClick={() => setPlan(i)}
+            >
+              <CardContent className="space-y-3">
+                <h3 className="text-xl font-bold text-green-300">{p.title}</h3>
+                <p className="text-gray-400">{p.desc}</p>
+                <p className="text-green-500 text-lg font-bold">{p.price}</p>
+                <Button variant="secondary" className="w-full">
+                  Quero esse
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Bônus Proibido */}
+      <section className="mt-20 bg-zinc-950 p-6 rounded-2xl border border-zinc-800">
+        <h2 className="text-2xl font-bold text-red-500 mb-4">BÔNUS PROIBIDO</h2>
+        <p className="text-white mb-2">
+          Ao assinar o plano Pro ou VIP, tu recebe:
+        </p>
+        <ul className="list-disc list-inside text-gray-300 space-y-1">
+          <li>Config tweakada do Radiant 🇧🇷</li>
+          <li>Invite pro grupo secreto com tweaks, configs e drops exclusivos</li>
+          <li>Acesso a bot que envia alerta de updates direto no Telegram</li>
+        </ul>
+      </section>
+
+      {/* FAQ */}
+      <section className="mt-20">
+        <h2 className="text-2xl font-bold text-center text-green-400 mb-6">FAQ DOS CRIA</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-bold text-white">Vai me banir?</p>
+            <p className="text-gray-400">Zé... se tu seguir o manual, só vai banir os fracos que tão contra tu.</p>
+          </div>
+          <div>
+            <p className="font-bold text-white">Como pago?</p>
+            <p className="text-gray-400">Pix direto no sistema ou Cripto. Discrição total.</p>
+          </div>
+          <div>
+            <p className="font-bold text-white">Tem suporte?</p>
+            <p className="text-gray-400">Suporte 24/7 no Telegram. Só colar.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="mt-20 text-center text-gray-600 text-sm border-t border-zinc-800 pt-6">
+        NineCheats não é afiliado à Riot Games. Material criado para fins educacionais e de simulação.<br />
+        Contato via ProtonMail (sob demanda) • Grupo secreto só após compra
+      </footer>
+    </div>
+  );
+}
